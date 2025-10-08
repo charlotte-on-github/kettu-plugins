@@ -4,10 +4,11 @@ import { storage } from "@vendetta/plugin";
 
 const { getChannel } = findByStoreName("ChannelStore");
 
-const baseStickerURL = "https://media.discordapp.net/stickers/{stickerId}.{format}?size={size}";
+const baseStickerURL =
+  "[⠀](https://media.discordapp.net/stickers/{stickerId}.{format})";
 
 export function isStickerAvailable(sticker, channelId) {
-  if (!sticker.guild_id) return true; // Not from a guild, default sticker. No Nitro needed.
+  if (!sticker.guild_id) return true; // Not from a guild, default sticker.
   const channelGuildId = getChannel(channelId).guild_id;
   return sticker.guild_id == channelGuildId;
 }
@@ -16,8 +17,7 @@ export function buildStickerURL(sticker) {
   const format = (sticker.format_type === 4) ? "gif" : "png";
   return baseStickerURL
     .replace("{stickerId}", sticker.id)
-    .replace("{format}", format)
-    .replace("{size}", storage.stickerSize.toString());
+    .replace("{format}", format);
 }
 
 export async function convertToGIF(stickerUrl) {
@@ -30,12 +30,12 @@ export async function convertToGIF(stickerUrl) {
       body: form
     });
     const fileId = response.url.split("/").pop().replace(/\.html$/, '');
-    
+
     // Convert uploaded APNG to GIF
     form = new FormData();
     form.append("file", fileId);
-    form.append("size", storage.stickerSize.toString());
-    response = await fetch(`https://ezgif.com/apng-to-gif/${fileId}.html?ajax=true`, {
+    response = await
+      fetch(`https://ezgif.com/apng-to-gif/${fileId}.html?ajax=true`, {
       method: "POST",
       body: form
     });

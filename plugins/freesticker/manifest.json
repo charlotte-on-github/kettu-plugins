@@ -9,6 +9,9 @@
     {
       "name": "Cristiandis",
       "id": "559776692240121866"
+    },
+    {
+      "name": "Charlotte"
     }
   ],
   "main": "src/index.ts",
