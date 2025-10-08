@@ -1,7 +1,10 @@
 # Charlotte's Kettu Plugins, Based on Rico040's Bunny Plugins
-These are Vendetta plugins patched to work with [Bunny](https://github.com/bunny-mod) on new discord versions. Credits goes to original devs of their respective plugin.
+Plugins for [Kettu](https://codeberg.org/cocobo1/Kettu), that I tweaked to fit
+personal preferences.
+Freesticker plugin based on
+[aliernfrog](https://github.com/aliernfrog/vd-plugins)'s.
 
-# Building From Source
+## Building From Source
 ```bash
 $ git clone https://github.com/charlotte-on-github/kettu-plugins
 $ cd kettu-plugins
@@ -10,11 +13,12 @@ $ pnpm approve-builds
 $ pnpm build
 ```
 
-# Installing
+## Installing
 The plugins needs to be downloaded from a website.
 A locally hosted one can be created with Python using:
 ```bash
 $ python3 -m http.server -d dist
 ```
-From there the plugin can be installed using the local servers ip address and port.
+From there the plugin can be installed using the
+local servers ip address and port.
 
