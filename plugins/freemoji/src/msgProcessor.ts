@@ -8,57 +8,57 @@ const { getGuildId } = findByStoreName("SelectedGuildStore");
 const hasEmotesRegex = /<a?:(\w+):(\d+)>/i;
 
 function extractUnusableEmojis(messageString: string, size: number) {
-	const emojiStrings = messageString.matchAll(/<a?:(\w+):(\d+)>/gi);
+    const emojiStrings = messageString.matchAll(/<a?:(\w+):(\d+)>/gi);
 
-	for (const emojiString of emojiStrings) {
-		// Fetch required info about the emoji
-		const emoji = getCustomEmojiById(emojiString[2]);
+    for (const emojiString of emojiStrings) {
+        // Fetch required info about the emoji
+        const emoji = getCustomEmojiById(emojiString[2]);
 
-		// Check emoji usability
-		if (
-			emoji.guildId != getGuildId() ||
-			emoji.animated
-		) {
-			// Add to emotes to send
-			// Hacky fix, someone on discord removed url property for emoji
-			var ext = "webp"
-			if (emoji.animated){ ext = "gif"; }
-			if (storage.hyperlink === true) {
-				messageString = messageString.replace(
-					emojiString[0], 
-					`[⠀](https://cdn.discordapp.com/emojis/${emojiString[2]}.${ext}?quality=lossless)`
-				);
-			} else {
-				messageString = messageString.replace(
-					emojiString[0], 
-					`https://cdn.discordapp.com/emojis/${emojiString[2]}.${ext}}`
-				);
-			}
-		}
-	}
-	
-	return { 
+        // Check emoji usability
+        if (
+            emoji.guildId != getGuildId() ||
+            emoji.animated
+        ) {
+            // Add to emotes to send
+            // Hacky fix, someone on discord removed url property for emoji
+            var ext = "webp"
+            if (emoji.animated){ ext = "gif"; }
+            if (storage.hyperlink === true) {
+                messageString = messageString.replace(
+                    emojiString[0],
+                    `[⠀](https://cdn.discordapp.com/emojis/${emojiString[2]}.${ext}?quality=lossless)`
+                );
+            } else {
+                messageString = messageString.replace(
+                    emojiString[0],
+                    `https://cdn.discordapp.com/emojis/${emojiString[2]}.${ext}?quality=lossless`
+                );
+            }
+        }
+    }
+
+    return {
         newContent: messageString.trim()
     };
 }
 
 export default function modifyIfNeeded(msg: Message) {
-	if (!msg.content.match(hasEmotesRegex)) return;
-	if (!storage.forceMoji) { if (storage.haveNitro) return; }
+    if (!msg.content.match(hasEmotesRegex)) return;
+    if (!storage.forceMoji) { if (storage.haveNitro) return; }
 
-	// Find all emojis from the captured message string and return object with ~~emojiURLS and~~ content
-	const { newContent } = extractUnusableEmojis(msg.content, storage.emojiSize);
+    // Find all emojis from the captured message string and return object with ~~emojiURLS and~~ content
+    const { newContent } = extractUnusableEmojis(msg.content);
 
-	msg.content = newContent;
+    msg.content = newContent;
 
-	// if (extractedEmojis.length > 0) {
-	// 	if (storage.hyperlink === true) { 
-	// 		msg.content += " " + extractedEmojis.join(" "); 
-	// 	} else { 
-	// 		msg.content += "\n" + extractedEmojis.join("\n"); 
-	// 	}
-	// }
+    // if (extractedEmojis.length > 0) {
+    //  if (storage.hyperlink === true) { 
+    //      msg.content += " " + extractedEmojis.join(" "); 
+    //  } else { 
+    //      msg.content += "\n" + extractedEmojis.join("\n"); 
+    //  }
+    // }
 
-	// Set invalidEmojis to empty to prevent Discord yelling to you about you not having nitro
-	msg.invalidEmojis = [];
+    // Set invalidEmojis to empty to prevent Discord yelling to you about you not having nitro
+    msg.invalidEmojis = [];
 };

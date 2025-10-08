@@ -6,18 +6,6 @@ import { storage } from "@vendetta/plugin";
 
 const { FormSection, FormRadioRow, FormSwitchRow } = Forms;
 
-const sizeOptions = {
-    Tiny: 16,
-    Small: 32,
-    Medium: 48,
-    Big: 56,
-    Large: 64,
-    Huge: 96,
-    Jumbo: 128,
-}
-
-const previewUri = "https://cdn.discordapp.com/emojis/926602689213767680.webp";
-
 export default () => {
     useProxy(storage);
 
@@ -39,25 +27,6 @@ export default () => {
                     value={storage.forceMoji}
                     onValueChange={ () => {storage.forceMoji = !storage.forceMoji;}}
                     note=""
-                />
-            </FormSection>
-            <FormSection title="Emoji Size" >
-                {Object.entries(sizeOptions).map(([name, size]) => <FormRadioRow
-                    label={name}
-                    subLabel={size}
-                    selected={storage.emojiSize === size}
-                    onPress={() => {
-                        storage.emojiSize = size;
-                    }}
-                />)}
-            </FormSection>
-            <FormSection title="Preview">
-                <RN.Image
-                    source={{ 
-                        uri: `${previewUri}?size=${storage.emojiSize}`,
-                        width: storage.emojiSize,
-                        height: storage.emojiSize 
-                    }}
                 />
             </FormSection>
         </RN.ScrollView>
