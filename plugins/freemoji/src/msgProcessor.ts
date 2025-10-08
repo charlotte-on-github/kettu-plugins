@@ -26,7 +26,7 @@ function extractUnusableEmojis(messageString: string, size: number) {
 			if (storage.hyperlink === true) {
 				messageString = messageString.replace(
 					emojiString[0], 
-					`[⠀](https://cdn.discordapp.com/emojis/${emojiString[2]}.${ext}?quality-lossless)`
+					`[⠀](https://cdn.discordapp.com/emojis/${emojiString[2]}.${ext}?quality=lossless)`
 				);
 			} else {
 				messageString = messageString.replace(
