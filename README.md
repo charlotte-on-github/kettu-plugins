@@ -18,9 +18,3 @@ $ python3 -m http.server -d dist
 ```
 From there the plugin can be installed using the local servers ip address and port.
 
-## Freemoji
-Allows you to use Nitro emoji without Nitro.
-
-## Picture Links
-Allows you to click on profile pictures and banners.
-

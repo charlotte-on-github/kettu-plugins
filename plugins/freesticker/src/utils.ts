@@ -5,7 +5,7 @@ import { storage } from "@vendetta/plugin";
 const { getChannel } = findByStoreName("ChannelStore");
 
 const baseStickerURL =
-  "[⠀](https://media.discordapp.net/stickers/{stickerId}.{format})";
+  "https://media.discordapp.net/stickers/{stickerId}.{format}";
 
 export function isStickerAvailable(sticker, channelId) {
   if (!sticker.guild_id) return true; // Not from a guild, default sticker.

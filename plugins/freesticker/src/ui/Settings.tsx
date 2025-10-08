@@ -9,7 +9,7 @@ const { ScrollView } = General;
 const HelpMessage = findByName("HelpMessage");
 
 storage.convertApng ??= true;
-storage.hyperlink ??= true;
+storage.hidelink ??= true;
 
 export default function Settings() {
   useProxy(storage);
@@ -19,9 +19,9 @@ export default function Settings() {
     <Stack style={{ paddingVertical: 24, paddingHorizontal: 12 }} spacing={24}>
       <TableRowGroup title="General">
         <TableSwitchRow
-          label="Hyperlink stickers"
-          value={storage.hyperlink}
-          onValueChange={v => storage.hyperlink = v} />
+          label="Hide Sticker Links"
+          value={storage.hidelink}
+          onValueChange={v => storage.hidelink = v} />
         <TableSwitchRow
           label="Ignore Nitro"
           subLabel="Force FreeStickers even when you have Nitro"

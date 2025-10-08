@@ -40,7 +40,7 @@ export default () => instead("sendStickers", MessageModule, (args, orig) => {
         }
         stickerURL = cached ?? stickerURL;
       }
-      if (storage.hyperlink && sticker.name) stickerURL = `[${sticker.name}](${stickerURL})`;
+      if (storage.hidelink) stickerURL = `[⠀](${stickerURL})`;
       MessageModule.sendMessage(channelId, { content: stickerURL }, null, extra);
     }
   }

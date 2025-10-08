@@ -13,7 +13,7 @@ export default () => {
         <RN.ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }}>
             <FormSection title="Settings" titleStyleType="no_border">
                 <FormSwitchRow
-                    label="Hide emoji"
+                    label="Hide Emoji Link"
                     subLabel="Hides emoji link to be less distractive"
                     leading={<Forms.FormIcon source={getAssetIDByName("ic_link")} />}
                     value={storage.hyperlink}
